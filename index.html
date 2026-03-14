@@ -1301,6 +1301,7 @@
     font-size: 1.08rem;
   }
   .uncertain-viz-box {
+    min-height: 760px;
     border: 1px solid #d9e0ea;
     border-radius: 16px;
     background: linear-gradient(180deg, #fbfdff 0%, #f4f8ff 100%);
@@ -1309,9 +1310,7 @@
   .uncertain-viz-box svg {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 980 / 740;
-    vertical-align: top;
+    height: 760px;
   }
   .uncertain-side-panel {
     display: grid;
@@ -1371,8 +1370,10 @@
     .uncertain-choice-grid {
       grid-template-columns: 1fr;
     }
+    .uncertain-viz-box,
     .uncertain-viz-box svg {
-      aspect-ratio: 980 / 740;
+      min-height: 700px;
+      height: 700px;
     }
   }
 
@@ -1794,31 +1795,50 @@
   /* ===== PDCA 2026 compact quadrant redesign ===== */
   #mod8 .mini-card { overflow: visible; }
   .pdca-quad-shell {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
     gap: 14px;
-    align-items: stretch;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
   }
   .pdca-quad {
     border: 1px solid #d7e0ec;
     border-radius: 18px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
     box-shadow: var(--shadow);
-    min-height: 360px;
+    width: min(520px, calc(50% - 10px));
+    min-width: 420px;
+    height: 420px;
+    min-height: 420px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
+    resize: both;
+    touch-action: none;
+    transform: translate(var(--pdca-x, 0px), var(--pdca-y, 0px));
+    z-index: 1;
   }
   .pdca-quad.is-focus {
     box-shadow: 0 0 0 3px rgba(43,95,178,0.14), var(--shadow);
+    z-index: 5;
   }
   .pdca-quad.is-fullscreen {
     position: fixed;
     inset: 14px;
     z-index: 9999;
     min-height: auto;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    resize: none;
     border-radius: 22px;
+    transform: none;
+    --pdca-x: 0px;
+    --pdca-y: 0px;
   }
   .pdca-quad-header {
     display: flex;
@@ -1828,6 +1848,8 @@
     padding: 10px 12px;
     background: #eef4ff;
     border-bottom: 1px solid #d7e3f5;
+    cursor: move;
+    user-select: none;
   }
   .pdca-quad-title {
     display: flex;
@@ -2053,13 +2075,17 @@
     color: #204074;
   }
   @media (max-width: 1100px) {
-    .pdca-quad-shell,
     .pdca-plan-layout,
     .pdca-problem-list.inline-problems,
     .pdca-problem-list.inline-conclusions,
     .pdca-choice-row,
     .pdca-act-grid { grid-template-columns: 1fr; }
     .pdca-mini-card .pdca-donut-wrap { grid-template-columns: 1fr; }
+    .pdca-quad {
+      width: min(100%, 680px);
+      min-width: 0;
+      height: 420px;
+    }
   }
 
 </style>
@@ -3281,24 +3307,25 @@
 
       <div class="step-card">
         <h3>7.3 第三步：查看准则结果与可视化比较</h3>
-        <p>系统会同时按乐观准则、悲观准则、折中准则和最小后悔值准则计算结果。下方图框做得更大，便于你在调参时清楚观察推荐结果如何变化。</p>
+        <p>系统会同时按乐观准则、悲观准则和折中准则计算结果。下方图框做得更大，便于你在调参时清楚观察推荐结果如何变化。</p>
         <div class="uncertain-layout">
           <div class="uncertain-viz-card">
             <div class="uncertain-viz-head">
               <h3>收益矩阵与折中准则比较图</h3>
               <div class="small-muted">图中会同步显示收益矩阵与折中准则柱状比较，调参后可直接观察变化。</div>
             </div>
-            <div class="uncertain-criteria-note"><strong>准则提示：</strong>乐观准则（大中取大 / 冒险型）；悲观准则（小中取大 / 保守型）；折中准则（乐观系数 α，0~1）；最小后悔值准则（萨维奇准则，取最大后悔值中的最小者）。</div>
-            <div class="uncertain-viz-box" style="margin-top:4px;">
-              <svg id="uncertain-svg" viewBox="0 0 980 740" preserveAspectRatio="xMinYMin meet" aria-label="不确定型决策可视化图"></svg>
+            <div class="uncertain-criteria-note"><strong>准则提示：</strong>乐观准则（大中取大 / 冒险型）；悲观准则（小中取大 / 保守型）；折中准则（乐观系数 α，0~1）；等可能准则（拉普拉斯准则，取平均值）；最小后悔值准则（萨维奇准则，取最大后悔值中的最小者）。</div>
+            <div class="uncertain-viz-box">
+              <svg id="uncertain-svg" viewBox="0 0 980 740" aria-label="不确定型决策可视化图"></svg>
             </div>
           </div>
           <div class="uncertain-side-panel">
             <div class="recommend-box">
-              <h3>四种准则的推荐结果</h3>
+              <h3>三种准则的推荐结果</h3>
               <div class="recommend-item" id="u-rec-optimistic">请先生成结果。</div>
               <div class="recommend-item" id="u-rec-pessimistic">请先生成结果。</div>
               <div class="recommend-item" id="u-rec-hurwicz">请先生成结果。</div>
+              <div class="recommend-item" id="u-rec-laplace">请先生成结果。</div>
               <div class="recommend-item" id="u-rec-savage">请先生成结果。</div>
             </div>
             <div class="recommend-box">
@@ -4711,7 +4738,7 @@
       html += '<rect x="20" y="310" width="940" height="410" rx="18" fill="#ffffff" stroke="#d9e0ea"></rect>';
       html += '<text x="42" y="344" font-size="22" font-weight="700" fill="#204074">折中准则比较图（当前 α = '+alpha.toFixed(2)+'）</text>';
       html += '<text x="42" y="370" font-size="14" fill="#5a6a7c">折中准则：H = α×最大收益 + (1-α)×最小收益。α 越大，越偏向乐观。</text>';
-      html += '<text x="42" y="394" font-size="14" fill="#5a6a7c">同时参考：乐观准则（大中取大 / 冒险型）、悲观准则（小中取大 / 保守型）、最小后悔值准则（最大后悔值取最小）。</text>';
+      html += '<text x="42" y="394" font-size="14" fill="#5a6a7c">同时参考：乐观准则（大中取大 / 冒险型）、悲观准则（小中取大 / 保守型）、等可能准则（取平均值）、最小后悔值准则（最大后悔值取最小）。</text>';
       html += '<line x1="76" y1="650" x2="924" y2="650" stroke="#93a4b8" stroke-width="2"></line>';
       [minVal, (minVal+maxVal)/2, maxVal].forEach(function(tick) {
         var y = mapY(tick);
@@ -4735,11 +4762,13 @@
       var bestOptimistic = Object.keys(results).sort(function(a,b){ return results[b].maxValue - results[a].maxValue; })[0];
       var bestPessimistic = Object.keys(results).sort(function(a,b){ return results[b].minValue - results[a].minValue; })[0];
       var bestHurwicz = Object.keys(results).sort(function(a,b){ return results[b].hurwiczValue - results[a].hurwiczValue; })[0];
+      var bestLaplace = Object.keys(results).sort(function(a,b){ return results[b].avgValue - results[a].avgValue; })[0];
       var bestSavage = Object.keys(results).sort(function(a,b){ return results[a].savageValue - results[b].savageValue; })[0];
 
       document.getElementById('u-rec-optimistic').innerHTML = '<strong>乐观准则（大中取大 / 冒险型）：</strong>' + getUncertainSchemeName(bestOptimistic) + '。该方案最好结果最大，为 <strong>' + results[bestOptimistic].maxValue.toFixed(0) + '</strong> 万元。';
       document.getElementById('u-rec-pessimistic').innerHTML = '<strong>悲观准则（小中取大 / 保守型）：</strong>' + getUncertainSchemeName(bestPessimistic) + '。该方案最坏结果相对最好，为 <strong>' + results[bestPessimistic].minValue.toFixed(0) + '</strong> 万元。';
       document.getElementById('u-rec-hurwicz').innerHTML = '<strong>折中准则（乐观系数 α，0~1）：</strong>' + getUncertainSchemeName(bestHurwicz) + '。当前 α=' + uncertainState.alpha.toFixed(2) + ' 时，折中值最高，为 <strong>' + results[bestHurwicz].hurwiczValue.toFixed(2) + '</strong> 万元。';
+      document.getElementById('u-rec-laplace').innerHTML = '<strong>等可能准则（拉普拉斯准则）：</strong>' + getUncertainSchemeName(bestLaplace) + '。将三种市场状态视为等可能时，该方案平均收益最高，为 <strong>' + results[bestLaplace].avgValue.toFixed(2) + '</strong> 万元。';
       document.getElementById('u-rec-savage').innerHTML = '<strong>最小后悔值准则（萨维奇准则）：</strong>' + getUncertainSchemeName(bestSavage) + '。其最大后悔值最小，为 <strong>' + results[bestSavage].savageValue.toFixed(0) + '</strong> 万元。';
 
       var initial = uncertainState.initialChoice;
@@ -4751,10 +4780,12 @@
           compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。这更接近悲观准则，说明你更重视最坏情况下的稳健性。';
         } else if (initial === bestOptimistic) {
           compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。这更接近乐观准则，说明你较看重最好情况下的增长机会。';
+        } else if (initial === bestLaplace) {
+          compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。这与等可能准则较接近，说明你倾向把不同市场状态视作同等重要。';
         } else if (initial === bestSavage) {
           compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。这与最小后悔值准则较接近，说明你希望尽量避免“事后最遗憾”的情况。';
         } else {
-          compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。当前它与四种典型准则的推荐都不完全一致，建议你再结合矩阵数据重新判断。';
+          compare.innerHTML = '<strong>你的初始判断：</strong>' + getUncertainSchemeName(initial) + '。当前它与五种典型准则的推荐都不完全一致，建议你再结合矩阵数据重新判断。';
         }
       } else {
         compare.innerHTML = '你尚未记录初始判断。建议先完成第一步，再比较自己的直觉选择与系统推荐是否一致。';
@@ -4890,6 +4921,42 @@
       var panel = document.getElementById(panelId);
       if (!panel) return;
       panel.classList.toggle('is-fullscreen');
+    }
+
+
+    function initPDCAPanels() {
+      document.querySelectorAll('.pdca-quad').forEach(function(panel) {
+        if (panel.dataset.dragReady === '1') return;
+        panel.dataset.dragReady = '1';
+        panel.style.setProperty('--pdca-x', panel.dataset.x || '0px');
+        panel.style.setProperty('--pdca-y', panel.dataset.y || '0px');
+        var header = panel.querySelector('.pdca-quad-header');
+        if (!header) return;
+        header.addEventListener('pointerdown', function(event) {
+          if (panel.classList.contains('is-fullscreen')) return;
+          if (event.target.closest('button, input, label, a')) return;
+          panel.classList.add('is-focus');
+          panel.style.zIndex = String(10 + Array.from(document.querySelectorAll('.pdca-quad')).indexOf(panel));
+          var startX = event.clientX;
+          var startY = event.clientY;
+          var originX = parseFloat(panel.dataset.x || '0');
+          var originY = parseFloat(panel.dataset.y || '0');
+          function moveHandler(moveEvent) {
+            var nextX = originX + (moveEvent.clientX - startX);
+            var nextY = originY + (moveEvent.clientY - startY);
+            panel.dataset.x = String(nextX);
+            panel.dataset.y = String(nextY);
+            panel.style.setProperty('--pdca-x', nextX + 'px');
+            panel.style.setProperty('--pdca-y', nextY + 'px');
+          }
+          function upHandler() {
+            window.removeEventListener('pointermove', moveHandler);
+            window.removeEventListener('pointerup', upHandler);
+          }
+          window.addEventListener('pointermove', moveHandler);
+          window.addEventListener('pointerup', upHandler);
+        });
+      });
     }
 
     function showPDCASection(sectionId) {
