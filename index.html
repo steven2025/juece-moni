@@ -693,108 +693,143 @@
       }
     }
   .be-live-layout {
-      display: grid;
-      grid-template-columns: 1.05fr 1.95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .be-left-panel,
-    .be-right-panel {
-      margin-bottom: 0;
       display: flex;
       flex-direction: column;
-    }
-
-    .be-left-panel {
       gap: 14px;
     }
 
-    .top-fill-card {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .lower-card {
-      margin-top: 0;
-    }
-
-    .be-bottom-panel {
-      margin-top: 4px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-
-    .be-bottom-grid {
+    .be-formula-row {
       display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .be-formula-row .compact-formula-card {
+      min-height: 72px;
+      padding: 9px 11px;
+      max-width: 100%;
+    }
+
+    .be-formula-row .compact-formula-card h4 {
+      margin: 0 0 4px;
+      font-size: clamp(12px, 1vw, 14px);
+      line-height: 1.1;
+    }
+
+    .be-formula-row .compact-formula-card p {
+      margin: 2px 0;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+
+    .be-formula-row .compact-formula-card .formula-big {
+      font-size: clamp(10px, 0.88vw, 12px);
+    }
+
+    .be-formula-row .compact-formula-card .formula-mid {
+      font-size: clamp(12px, 1.02vw, 15px);
+    }
+
+    .be-formula-row .compact-formula-card .formula-result {
+      font-size: clamp(16px, 1.35vw, 20px);
+    }
+
+    .be-formula-row .compact-formula-card .status-line {
+      margin-top: 4px;
+      font-size: clamp(11px, 0.95vw, 13px);
+    }
+
+    .be-main-grid {
+      display: grid;
+      grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+      gap: 14px;
       align-items: start;
     }
 
+    .be-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .be-visual-card {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .be-control-card,
+    .be-task-card {
+      background: rgba(248, 250, 252, 0.8);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      width: 100%;
+      max-width: 290px;
+    }
+
+    .be-control-card h3,
+    .be-task-card h3 {
+      font-size: 16px;
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+
     .slider-block {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .compact-slider {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .slider-block label {
       display: block;
-      margin-bottom: 2px;
+      margin-bottom: 5px;
       color: var(--text);
-      font-size: 7px;
-      line-height: 1.05;
+      font-size: 14px;
+      line-height: 1.3;
     }
 
     .compact-slider input[type="range"] {
-      width: 100%;
-      transform: scaleY(0.95);
+      width: 88%;
+      max-width: 220px;
+      transform: scaleY(0.98);
       margin: 0;
     }
 
     .small-note {
-      margin: 3px 0 0;
-      font-size: 7px;
-      line-height: 1.05;
+      margin: 5px 0 0;
+      font-size: 13px;
+      line-height: 1.3;
       color: var(--muted);
     }
 
     .compact-factors {
-      gap: 5px;
+      gap: 8px;
     }
 
-    .full-height-box {
-      min-height: 92px;
-      padding: 8px 10px;
+    .be-task-card .factor-item {
+      padding: 10px 12px;
     }
 
-    .be-bottom-panel h3 {
-      font-size: 12px;
-      margin: 0 0 5px;
-      line-height: 1.05;
+    .be-task-card h4 {
+      font-size: 14px;
+      margin: 0 0 4px;
+      line-height: 1.25;
     }
 
-    .be-bottom-panel h4 {
-      font-size: 9px;
-      margin: 0 0 3px;
-      line-height: 1.05;
-    }
-
-    .be-bottom-panel p,
-    .be-bottom-panel li,
-    .be-bottom-panel .task-box p,
-    .be-bottom-panel .factor-item p {
-      font-size: 7px;
-      line-height: 1.05;
-      margin: 0 0 3px;
-    }
-
-    .be-bottom-panel .factor-item {
-      padding: 8px 9px;
+    .be-task-card p,
+    .be-task-card li,
+    .be-control-card p {
+      font-size: 13px;
+      line-height: 1.35;
+      margin: 0 0 4px;
     }
 
     .formula-card p {
@@ -870,23 +905,35 @@
       border: 1px solid var(--line);
       border-radius: 18px;
       background: #fff;
-      padding: 10px;
+      padding: 8px 10px;
       flex: 1;
+      width: 100%;
+      margin-left: auto;
     }
 
     .be-live-chart svg {
       width: 100%;
       height: auto;
+      max-height: 420px;
       display: block;
+      margin: 0 auto;
     }
 
     @media (max-width: 1000px) {
-      .be-live-layout {
+      .be-formula-row,
+      .be-main-grid {
         grid-template-columns: 1fr;
       }
 
-      .be-bottom-grid {
-        grid-template-columns: 1fr;
+      .be-control-card,
+      .be-task-card,
+      .be-visual-card {
+        max-width: 100%;
+      }
+
+      .compact-slider input[type="range"] {
+        width: 100%;
+        max-width: none;
       }
     }
   
@@ -2089,6 +2136,211 @@
   }
 
 </style>
+
+<style>
+  .app-shell {
+    display: grid;
+    grid-template-columns: minmax(180px, 20%) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .container {
+    max-width: min(1500px, 96vw);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 16px 14px;
+  }
+
+  .sidebar-head {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .sidebar-nav {
+    display: grid;
+    gap: 8px;
+  }
+
+  .sidebar-btn {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--text);
+    border-radius: 12px;
+    padding: 11px 12px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-btn:hover {
+    border-color: var(--primary);
+    background: var(--soft);
+  }
+
+  .sidebar-btn.active {
+    background: linear-gradient(135deg, #edf4ff 0%, #dfeaff 100%);
+    border-color: #9ab7ea;
+    color: var(--primary);
+    box-shadow: inset 0 0 0 1px rgba(35, 86, 168, 0.06);
+  }
+
+  .display-stage {
+    min-width: 0;
+  }
+
+  .display-stage > .module-panel {
+    margin-bottom: 0;
+  }
+
+  .overview-panel .menu-grid,
+  .legacy-main-grid,
+  #mod3 > .delphi-menu-grid,
+  #mod4 > #evalMenu,
+  #mod8 > #pdcaMenu,
+  .module-topbar,
+  .step-topbar {
+    display: none !important;
+  }
+
+  .overview-note {
+    margin: 12px 0 18px;
+    padding: 16px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+  }
+
+  .overview-note p {
+    margin: 6px 0;
+  }
+
+  .module-card,
+  .intro-card {
+    padding: 22px;
+  }
+
+  .module-subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .module-step-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .module-step-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #f8fbff;
+  }
+
+  .module-step-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+
+  .module-step-panel {
+    display: none;
+  }
+
+  .module-step-panel.active-module-step {
+    display: block;
+  }
+
+  #mod1 details.module-step-panel,
+  #mod6 details.module-step-panel {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    margin: 0;
+    overflow: visible;
+  }
+
+  #mod1 details.module-step-panel > summary,
+  #mod6 details.module-step-panel > summary {
+    display: none;
+  }
+
+  #mod1 details.module-step-panel .details-content,
+  #mod6 details.module-step-panel .details-content {
+    padding: 0;
+  }
+
+  .full-module {
+    min-height: calc(100vh - 180px);
+  }
+
+  @media (max-width: 960px) {
+    .app-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+    }
+
+    .sidebar-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      max-width: 100%;
+      padding: 14px 12px 32px;
+    }
+
+    .hero {
+      padding: 22px 18px;
+      border-radius: 18px;
+    }
+
+    .sidebar-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .module-subnav {
+      gap: 8px;
+    }
+
+    .module-step-btn,
+    .sidebar-btn {
+      font-size: 13px;
+    }
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
@@ -2620,135 +2872,130 @@
         <div class="step-topbar">
           <button class="step-btn" onclick="backToEvalMenu()">← 返回方案评价菜单</button>
           <button class="step-btn" onclick="showEvalSection('eval-sec-1')">← 返回上一步</button>
-          <button class="step-btn" onclick="showEvalSection('eval-sec-3')">进入下一步 →</button>
-        </div>
-        <h3>第二步：默认权重与初始结果</h3>
-        <p>系统先给出一组默认权重和三种方案的基础评分。请观察：在默认评价标准下，哪一种方案综合得分最高。</p>
-
-        <div class="viz-card">
-          <h4>默认权重与三种方案评分表（1—10分）</h4>
-          <div class="table-wrap">
-            <table class="score-table">
-              <thead>
-                <tr><th>评价指标</th><th>权重</th><th>方案A：PLA基材料</th><th>方案B：PBAT/淀粉复合材料</th><th>方案C：纸基-生物涂层复合材料</th></tr>
-              </thead>
-              <tbody>
-                <tr><td id="eval-indicator-1"></td><td>15%</td><td>7</td><td>9</td><td>6</td></tr>
-                <tr><td id="eval-indicator-2"></td><td>15%</td><td>8</td><td>7</td><td>9</td></tr>
-                <tr><td id="eval-indicator-3"></td><td>10%</td><td>8</td><td>8</td><td>8</td></tr>
-                <tr><td id="eval-indicator-4"></td><td>10%</td><td>7</td><td>7</td><td>9</td></tr>
-                <tr><td id="eval-indicator-5"></td><td>15%</td><td>7</td><td>6</td><td>9</td></tr>
-                <tr><td id="eval-indicator-6"></td><td>15%</td><td>9</td><td>7</td><td>5</td></tr>
-                <tr><td id="eval-indicator-7"></td><td>10%</td><td>9</td><td>7</td><td>5</td></tr>
-                <tr><td id="eval-indicator-8"></td><td>10%</td><td>7</td><td>8</td><td>8</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="viz-card">
-          <h4>默认权重下的综合得分</h4>
-          <p><strong>方案A：PLA基材料</strong> = 7×15% + 8×15% + 8×10% + 7×10% + 7×15% + 9×15% + 9×10% + 7×10% = <strong>7.75</strong></p>
-          <p><strong>方案B：PBAT/淀粉复合材料</strong> = 9×15% + 7×15% + 8×10% + 7×10% + 6×15% + 7×15% + 7×10% + 8×10% = <strong>7.35</strong></p>
-          <p><strong>方案C：纸基-生物涂层复合材料</strong> = 6×15% + 9×15% + 8×10% + 9×10% + 9×15% + 5×15% + 5×10% + 8×10% = <strong>7.35</strong></p>
-          <div class="task-box">
-            <h4>系统评语</h4>
-            <p>在默认权重下，<strong>方案A综合得分最高（7.75）</strong>。说明当前评价体系更重视方案的综合均衡性，尤其是加工适应性和工艺稳定性，因此更容易支持方案A成为优先推进对象；方案B与方案C虽然各有突出优势，但在默认标准下仍略低于方案A。</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="eval-sec-3" class="mini-card eval-section">
-        <div class="step-topbar">
-          <button class="step-btn" onclick="backToEvalMenu()">← 返回方案评价菜单</button>
-          <button class="step-btn" onclick="showEvalSection('eval-sec-2')">← 返回上一步</button>
           <button class="step-btn" onclick="showEvalSection('eval-sec-4')">进入下一步 →</button>
         </div>
-        <h3>第三步：权重调整实验</h3>
-        <p>请按系统要求进行一次定向调整，观察评价结果是否会改变。</p>
-        <div class="task-box">
-          <h4>实验任务</h4>
-          <p>企业当前希望增强价格竞争力，并适当降低对制造落地性的关注。请将以下权重调整为：</p>
-          <ul>
-            <li>单位包装综合成本：<strong>15% → 30%</strong></li>
-            <li>加工适应性：<strong>15% → 8%</strong></li>
-            <li>工艺稳定性：<strong>10% → 2%</strong></li>
-          </ul>
-          <p>请拖动下方数据条，完成后点击“确认调整并查看新结果”。</p>
-        </div>
+        <h3>第二步：默认结果与权重调整实验</h3>
+        <p>本步将默认结果展示与权重调整实验合并。左侧主框用于集中查看默认表格、计算结果和调整后的新结果；右侧用于拖动权重并提交实验。</p>
 
-        <div class="weight-adjust-grid">
-          <div class="adjust-card">
-            <h4>当前权重</h4>
-            <p>单位包装综合成本：<span id="cost-now">15</span>%</p>
-            <input id="cost-slider" type="range" min="15" max="30" value="15" step="1" oninput="document.getElementById('cost-now').innerText=this.value">
-            <p>加工适应性：<span id="process-now">15</span>%</p>
-            <input id="process-slider" type="range" min="8" max="15" value="15" step="1" oninput="document.getElementById('process-now').innerText=this.value">
-            <p>工艺稳定性：<span id="stable-now">10</span>%</p>
-            <input id="stable-slider" type="range" min="2" max="10" value="10" step="1" oninput="document.getElementById('stable-now').innerText=this.value">
-          </div>
-          <div class="adjust-card">
-            <h4>目标提示</h4>
-            <p>请将三个数据条分别调到：</p>
-            <p>单位包装综合成本：<strong>30%</strong></p>
-            <p>加工适应性：<strong>8%</strong></p>
-            <p>工艺稳定性：<strong>2%</strong></p>
-            <p class="pick-tip">完成后点击下方按钮确认。</p>
-          </div>
-        </div>
+        <div class="eval-lab-layout eval-compact">
+          <div id="eval-main-shell" class="eval-main-shell">
+            <div class="eval-shell-toolbar">
+              <button id="eval-fullscreen-btn" class="tree-viz-btn" type="button" onclick="toggleEvalFullscreen()">全屏</button>
+            </div>
+            <div id="eval-main-frame" class="eval-main-frame">
+              <div class="viz-card eval-compact-card">
+                <h4>默认权重与三种方案评分表（1—10分）</h4>
+                <div class="table-wrap">
+                  <table class="score-table">
+                    <thead>
+                      <tr><th>评价指标</th><th>权重</th><th>方案A：PLA基材料</th><th>方案B：PBAT/淀粉复合材料</th><th>方案C：纸基-生物涂层复合材料</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td id="eval-indicator-1"></td><td>15%</td><td>7</td><td>9</td><td>6</td></tr>
+                      <tr><td id="eval-indicator-2"></td><td>15%</td><td>8</td><td>7</td><td>9</td></tr>
+                      <tr><td id="eval-indicator-3"></td><td>10%</td><td>8</td><td>8</td><td>8</td></tr>
+                      <tr><td id="eval-indicator-4"></td><td>10%</td><td>7</td><td>7</td><td>9</td></tr>
+                      <tr><td id="eval-indicator-5"></td><td>15%</td><td>7</td><td>6</td><td>9</td></tr>
+                      <tr><td id="eval-indicator-6"></td><td>15%</td><td>9</td><td>7</td><td>5</td></tr>
+                      <tr><td id="eval-indicator-7"></td><td>10%</td><td>9</td><td>7</td><td>5</td></tr>
+                      <tr><td id="eval-indicator-8"></td><td>10%</td><td>7</td><td>8</td><td>8</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-        <div class="action-row">
-          <button class="action-btn" onclick="showEvalResult()">确认调整并查看新结果</button>
-        </div>
-        <div id="eval-adjust-feedback" class="feedback-box" style="display:none;"></div>
+              <div class="viz-card eval-compact-card">
+                <h4>默认权重下的综合得分</h4>
+                <p><strong>方案A：PLA基材料</strong> = 7×15% + 8×15% + 8×10% + 7×10% + 7×15% + 9×15% + 9×10% + 7×10% = <strong>7.75</strong></p>
+                <p><strong>方案B：PBAT/淀粉复合材料</strong> = 9×15% + 7×15% + 8×10% + 7×10% + 6×15% + 7×15% + 7×10% + 8×10% = <strong>7.35</strong></p>
+                <p><strong>方案C：纸基-生物涂层复合材料</strong> = 6×15% + 9×15% + 8×10% + 9×10% + 9×15% + 5×15% + 5×10% + 8×10% = <strong>7.35</strong></p>
+                <div class="task-box compact-task-box">
+                  <h4>系统评语</h4>
+                  <p>在默认权重下，<strong>方案A综合得分最高（7.75）</strong>。说明当前评价体系更重视方案的综合均衡性，尤其是加工适应性和工艺稳定性，因此更容易支持方案A成为优先推进对象；方案B与方案C虽然各有突出优势，但在默认标准下仍略低于方案A。</p>
+                </div>
+              </div>
 
-        <div id="eval-result-box" style="display:none;">
-          <div class="viz-card">
-            <h4>调整后的权重与三种方案评分表</h4>
-            <div class="table-wrap">
-              <table class="score-table">
-                <thead>
-                  <tr><th>评价指标</th><th>调整后权重</th><th>方案A：PLA基材料</th><th>方案B：PBAT/淀粉复合材料</th><th>方案C：纸基-生物涂层复合材料</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>单位包装综合成本</td><td>30%</td><td>7</td><td>9</td><td>6</td></tr>
-                  <tr><td>降解性能表现</td><td>15%</td><td>8</td><td>7</td><td>9</td></tr>
-                  <tr><td>政策与标准符合度</td><td>10%</td><td>8</td><td>8</td><td>8</td></tr>
-                  <tr><td>耐热性</td><td>10%</td><td>7</td><td>7</td><td>9</td></tr>
-                  <tr><td>防油防水性能</td><td>15%</td><td>7</td><td>6</td><td>9</td></tr>
-                  <tr><td>加工适应性</td><td>8%</td><td>9</td><td>7</td><td>5</td></tr>
-                  <tr><td>工艺稳定性</td><td>2%</td><td>9</td><td>7</td><td>5</td></tr>
-                  <tr><td>市场接受度</td><td>10%</td><td>7</td><td>8</td><td>8</td></tr>
-                </tbody>
-              </table>
+              <div id="eval-result-box" style="display:none;">
+                <div class="viz-card eval-compact-card">
+                  <h4>调整后的权重与三种方案评分表</h4>
+                  <div class="table-wrap">
+                    <table class="score-table">
+                      <thead>
+                        <tr><th>评价指标</th><th>调整后权重</th><th>方案A：PLA基材料</th><th>方案B：PBAT/淀粉复合材料</th><th>方案C：纸基-生物涂层复合材料</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>单位包装综合成本</td><td>30%</td><td>7</td><td>9</td><td>6</td></tr>
+                        <tr><td>降解性能表现</td><td>15%</td><td>8</td><td>7</td><td>9</td></tr>
+                        <tr><td>政策与标准符合度</td><td>10%</td><td>8</td><td>8</td><td>8</td></tr>
+                        <tr><td>耐热性</td><td>10%</td><td>7</td><td>7</td><td>9</td></tr>
+                        <tr><td>防油防水性能</td><td>15%</td><td>7</td><td>6</td><td>9</td></tr>
+                        <tr><td>加工适应性</td><td>8%</td><td>9</td><td>7</td><td>5</td></tr>
+                        <tr><td>工艺稳定性</td><td>2%</td><td>9</td><td>7</td><td>5</td></tr>
+                        <tr><td>市场接受度</td><td>10%</td><td>7</td><td>8</td><td>8</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="viz-card eval-compact-card">
+                  <h4>调整后综合得分</h4>
+                  <p><strong>方案A：PLA基材料</strong> = 7×30% + 8×15% + 8×10% + 7×10% + 7×15% + 9×8% + 9×2% + 7×10% = <strong>7.45</strong></p>
+                  <p><strong>方案B：PBAT/淀粉复合材料</strong> = 9×30% + 7×15% + 8×10% + 7×10% + 6×15% + 7×8% + 7×2% + 8×10% = <strong>7.65</strong></p>
+                  <p><strong>方案C：纸基-生物涂层复合材料</strong> = 6×30% + 9×15% + 8×10% + 9×10% + 9×15% + 5×8% + 5×2% + 8×10% = <strong>7.50</strong></p>
+                </div>
+
+                <div class="viz-card eval-compact-card">
+                  <h4>结果变化</h4>
+                  <div class="table-wrap">
+                    <table class="score-table">
+                      <thead>
+                        <tr><th>方案</th><th>调整前得分</th><th>调整后得分</th><th>排序变化</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>方案A：PLA基材料</td><td>7.75</td><td>7.45</td><td>第1名 → 第2名</td></tr>
+                        <tr><td>方案B：PBAT/淀粉复合材料</td><td>7.35</td><td>7.65</td><td>并列第2名 → 第1名</td></tr>
+                        <tr><td>方案C：纸基-生物涂层复合材料</td><td>7.35</td><td>7.50</td><td>并列第2名 → 第3名</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="task-box compact-task-box">
+                    <h4>系统评语</h4>
+                    <p><strong>最高分方案已由A变为B。</strong> 说明当企业明显提高对价格竞争力的重视程度，同时降低对加工适应性和工艺稳定性的关注时，方案B在<strong>综合成本、市场接受度和部分性能指标</strong>上的优势被显著放大，因此反超A成为新的最优方案。</p>
+                    <p>这说明：<strong>最优方案不是固定答案，而是建立在评价标准之上的相对结论。</strong> 当决策者更看重什么，最终排序就更可能向该维度表现更强的方案倾斜。</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="viz-card">
-            <h4>调整后综合得分</h4>
-            <p><strong>方案A：PLA基材料</strong> = 7×30% + 8×15% + 8×10% + 7×10% + 7×15% + 9×8% + 9×2% + 7×10% = <strong>7.45</strong></p>
-            <p><strong>方案B：PBAT/淀粉复合材料</strong> = 9×30% + 7×15% + 8×10% + 7×10% + 6×15% + 7×8% + 7×2% + 8×10% = <strong>7.65</strong></p>
-            <p><strong>方案C：纸基-生物涂层复合材料</strong> = 6×30% + 9×15% + 8×10% + 9×10% + 9×15% + 5×8% + 5×2% + 8×10% = <strong>7.50</strong></p>
-          </div>
-
-          <div class="viz-card">
-            <h4>结果变化</h4>
-            <div class="table-wrap">
-              <table class="score-table">
-                <thead>
-                  <tr><th>方案</th><th>调整前得分</th><th>调整后得分</th><th>排序变化</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>方案A：PLA基材料</td><td>7.75</td><td>7.45</td><td>第1名 → 第2名</td></tr>
-                  <tr><td>方案B：PBAT/淀粉复合材料</td><td>7.35</td><td>7.65</td><td>并列第2名 → 第1名</td></tr>
-                  <tr><td>方案C：纸基-生物涂层复合材料</td><td>7.35</td><td>7.50</td><td>并列第2名 → 第3名</td></tr>
-                </tbody>
-              </table>
+          <div class="eval-side-panel">
+            <div class="task-box compact-task-box">
+              <h4>实验任务</h4>
+              <p>企业当前希望增强价格竞争力，并适当降低对制造落地性的关注。请把以下权重调为：</p>
+              <ul>
+                <li>单位包装综合成本：<strong>15% → 30%</strong></li>
+                <li>加工适应性：<strong>15% → 8%</strong></li>
+                <li>工艺稳定性：<strong>10% → 2%</strong></li>
+              </ul>
+              <p>完成后点击“确认调整并查看新结果”。</p>
             </div>
-            <div class="task-box">
-              <h4>系统评语</h4>
-              <p><strong>最高分方案已由A变为B。</strong> 说明当企业明显提高对价格竞争力的重视程度，同时降低对加工适应性和工艺稳定性的关注时，方案B在<strong>综合成本、市场接受度和部分性能指标</strong>上的优势被显著放大，因此反超A成为新的最优方案。</p>
-              <p>这说明：<strong>最优方案不是固定答案，而是建立在评价标准之上的相对结论。</strong> 当决策者更看重什么，最终排序就更可能向该维度表现更强的方案倾斜。</p>
+
+            <div class="adjust-card eval-adjust-side">
+              <h4>权重调整</h4>
+              <p>单位包装综合成本：<span id="cost-now">15</span>%</p>
+              <input id="cost-slider" type="range" min="15" max="30" value="15" step="1" oninput="document.getElementById('cost-now').innerText=this.value">
+              <p>加工适应性：<span id="process-now">15</span>%</p>
+              <input id="process-slider" type="range" min="8" max="15" value="15" step="1" oninput="document.getElementById('process-now').innerText=this.value">
+              <p>工艺稳定性：<span id="stable-now">10</span>%</p>
+              <input id="stable-slider" type="range" min="2" max="10" value="10" step="1" oninput="document.getElementById('stable-now').innerText=this.value">
+              <div class="mini-card eval-target-tip">
+                <h3>目标提示</h3>
+                <p>请分别调到 <strong>30% / 8% / 2%</strong>。</p>
+              </div>
+              <div class="action-row">
+                <button class="action-btn" onclick="showEvalResult()">确认调整并查看新结果</button>
+              </div>
+              <div id="eval-adjust-feedback" class="feedback-box" style="display:none;"></div>
             </div>
           </div>
         </div>
@@ -2757,10 +3004,10 @@
       <div id="eval-sec-4" class="mini-card eval-section">
         <div class="step-topbar">
           <button class="step-btn" onclick="backToEvalMenu()">← 返回方案评价菜单</button>
-          <button class="step-btn" onclick="showEvalSection('eval-sec-3')">← 返回上一步</button>
+          <button class="step-btn" onclick="showEvalSection('eval-sec-2')">← 返回上一步</button>
           <button class="step-btn" onclick="openModule('mod5')">进入下一模块 →</button>
         </div>
-        <h3>第四步：反思与总结</h3>
+        <h3>第三步：反思与总结</h3>
         <div class="factor-list">
           <div class="factor-item">
             <h4>1. 权重的重要性在哪里？</h4>
@@ -2797,8 +3044,8 @@
       </div>
 
       <div class="be-live-layout">
-        <div class="be-left-panel mini-card">
-          <div class="viz-card formula-card compact-formula-card top-fill-card">
+        <div class="be-formula-row">
+          <div class="viz-card formula-card compact-formula-card">
             <h4>盈亏平衡点销量公式</h4>
             <p class="formula-big">盈亏平衡点销量 = 固定成本 ÷（单价 - 单位变动成本）</p>
             <p class="formula-mid">= <span id="f-fixed">120000</span> ÷（<span id="f-price">10</span> - <span id="f-varcost">4</span>）</p>
@@ -2806,7 +3053,7 @@
             <p class="formula-result">= <span id="f-bep">20000</span> 件</p>
           </div>
 
-          <div class="viz-card formula-card compact-formula-card top-fill-card lower-card">
+          <div class="viz-card formula-card compact-formula-card">
             <h4>利润公式</h4>
             <p class="formula-big">利润 = 销售收入 - 总成本</p>
             <p class="formula-mid">= 25000 × <span id="p-price">10</span> - [<span id="p-fixed">120000</span> + 25000 × <span id="p-varcost">4</span>]</p>
@@ -2815,90 +3062,84 @@
           </div>
         </div>
 
-        <div class="be-right-panel mini-card">
-          <h3>盈亏平衡点动态示意图</h3>
-          <div class="be-live-chart">
-            <svg id="be-svg" viewBox="0 0 900 620" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <marker id="arrow-be" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L0,6 L8,3 z" fill="#222"></path>
-                </marker>
-              </defs>
-
-              <rect x="0" y="0" width="900" height="620" fill="#ffffff"></rect>
-
-              <line x1="85" y1="535" x2="835" y2="535" stroke="#222" stroke-width="3" marker-end="url(#arrow-be)"></line>
-              <line x1="85" y1="535" x2="85" y2="45" stroke="#222" stroke-width="3" marker-end="url(#arrow-be)"></line>
-
-              <text x="845" y="562" font-size="18" fill="#222">销量</text>
-              <text x="22" y="58" font-size="18" fill="#222">金额</text>
-
-              <g id="x-ticks"></g>
-              <g id="y-ticks"></g>
-
-              <polygon id="loss-area" points="85,535 450,300 450,390 85,390" fill="rgba(220,53,69,0.35)"></polygon>
-              <polygon id="profit-area" points="450,300 780,210 780,120" fill="rgba(40,167,69,0.35)"></polygon>
-
-              <line id="fixed-line" x1="85" y1="390" x2="810" y2="390" stroke="#666" stroke-width="3"></line>
-              <line id="cost-line" x1="85" y1="390" x2="780" y2="210" stroke="#ff8c42" stroke-width="5"></line>
-              <line id="revenue-line" x1="85" y1="535" x2="780" y2="120" stroke="#2b5fb2" stroke-width="5"></line>
-
-              <circle id="bep-dot" cx="450" cy="300" r="11" fill="#d62828" stroke="#fff" stroke-width="3"></circle>
-
-              <text x="710" y="110" font-size="18" fill="#2b5fb2">销售收入线</text>
-              <text x="710" y="225" font-size="18" fill="#ff8c42">总成本线</text>
-              <text x="710" y="395" font-size="18" fill="#666">固定成本线</text>
-
-              <text x="295" y="455" font-size="18" fill="#8b1e1e">亏损区间</text>
-              <text x="555" y="240" font-size="18" fill="#2d6a2d">盈利区间</text>
-
-              <line id="bep-arrow" x1="255" y1="190" x2="435" y2="292" stroke="#222" stroke-width="2.5" marker-end="url(#arrow-be)"></line>
-              <rect x="190" y="150" width="150" height="46" fill="#fff" stroke="#222" stroke-width="1.5"></rect>
-              <text x="205" y="179" font-size="19" fill="#222">盈亏平衡点</text>
-
-              <text id="bep-label" x="465" y="292" font-size="16" fill="#222">20000件</text>
-              <text id="forecast-label" x="695" y="145" font-size="16" fill="#222">当前销量 25000件</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="mini-card be-bottom-panel">
-        <div class="be-bottom-grid">
-          <div>
-            <h3>参数控制模块</h3>
-            <div class="slider-block compact-slider">
-              <label><strong>单价：</strong><span id="live-price-val">10</span> 元/件</label>
-              <input id="live-price" type="range" min="8" max="12" step="0.5" value="10" oninput="updateBELive()">
-            </div>
-            <div class="slider-block compact-slider">
-              <label><strong>单位变动成本：</strong><span id="live-varcost-val">4</span> 元/件</label>
-              <input id="live-varcost" type="range" min="3" max="7" step="0.5" value="4" oninput="updateBELive()">
-            </div>
-            <div class="slider-block compact-slider">
-              <label><strong>固定成本：</strong><span id="live-fixed-val">120000</span> 元</label>
-              <input id="live-fixed" type="range" min="80000" max="160000" step="5000" value="120000" oninput="updateBELive()">
-            </div>
-            <p class="small-note">当前销量设定：<strong>25000 件</strong></p>
-          </div>
-          <div>
-            <h3>实验任务</h3>
-            <div class="factor-list compact-factors">
-              <div class="factor-item">
-                <h4>实验任务1：竞争对手降价</h4>
-                <p>若竞争对手推出同类产品且价格更低，请将<strong>单价从10元/件调整为8元/件</strong>，观察盈亏平衡点如何变化。</p>
+        <div class="be-main-grid">
+          <div class="be-side-stack">
+            <div class="be-control-card">
+              <h3>参数控制模块</h3>
+              <div class="slider-block compact-slider">
+                <label><strong>单价：</strong><span id="live-price-val">10</span> 元/件</label>
+                <input id="live-price" type="range" min="8" max="12" step="0.5" value="10" oninput="updateBELive()">
               </div>
-              <div class="factor-item">
-                <h4>实验任务2：原材料涨价</h4>
-                <p>若原材料涨价，请将<strong>单位变动成本从4元/件调整为6元/件</strong>，观察盈亏平衡点如何变化。</p>
+              <div class="slider-block compact-slider">
+                <label><strong>单位变动成本：</strong><span id="live-varcost-val">4</span> 元/件</label>
+                <input id="live-varcost" type="range" min="3" max="7" step="0.5" value="4" oninput="updateBELive()">
+              </div>
+              <div class="slider-block compact-slider">
+                <label><strong>固定成本：</strong><span id="live-fixed-val">120000</span> 元</label>
+                <input id="live-fixed" type="range" min="80000" max="160000" step="5000" value="120000" oninput="updateBELive()">
+              </div>
+              <p class="small-note">当前销量设定：<strong>25000 件</strong></p>
+            </div>
+
+            <div class="be-task-card">
+              <h3>实验任务</h3>
+              <div class="factor-list compact-factors">
+                <div class="factor-item">
+                  <h4>实验任务1：竞争对手降价</h4>
+                  <p>若竞争对手推出同类产品且价格更低，请将<strong>单价从10元/件调整为8元/件</strong>，观察盈亏平衡点如何变化。</p>
+                </div>
+                <div class="factor-item">
+                  <h4>实验任务2：原材料涨价</h4>
+                  <p>若原材料涨价，请将<strong>单位变动成本从4元/件调整为6元/件</strong>，观察盈亏平衡点如何变化。</p>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <h3>图形观察提示</h3>
-            <div class="task-box full-height-box">
-              <p>拖动左侧参数后，请重点观察：<strong>销售收入线、总成本线、固定成本线、盈亏平衡点位置，以及盈利区和亏损区的变化</strong>。</p>
-              <p>本模块采用<strong>实时平滑移动</strong>方式呈现图形变化，帮助你更清楚地理解参数变化与经营结果之间的关系。</p>
+
+          <div class="mini-card be-visual-card">
+            <h3>盈亏平衡点动态示意图</h3>
+            <div class="be-live-chart">
+              <svg id="be-svg" viewBox="0 0 900 620" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <marker id="arrow-be" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#222"></path>
+                  </marker>
+                </defs>
+
+                <rect x="0" y="0" width="900" height="620" fill="#ffffff"></rect>
+
+                <line x1="85" y1="535" x2="835" y2="535" stroke="#222" stroke-width="3" marker-end="url(#arrow-be)"></line>
+                <line x1="85" y1="535" x2="85" y2="45" stroke="#222" stroke-width="3" marker-end="url(#arrow-be)"></line>
+
+                <text x="845" y="562" font-size="18" fill="#222">销量</text>
+                <text x="22" y="58" font-size="18" fill="#222">金额</text>
+
+                <g id="x-ticks"></g>
+                <g id="y-ticks"></g>
+
+                <polygon id="loss-area" points="85,535 450,300 450,390 85,390" fill="rgba(220,53,69,0.35)"></polygon>
+                <polygon id="profit-area" points="450,300 780,210 780,120" fill="rgba(40,167,69,0.35)"></polygon>
+
+                <line id="fixed-line" x1="85" y1="390" x2="810" y2="390" stroke="#666" stroke-width="3"></line>
+                <line id="cost-line" x1="85" y1="390" x2="780" y2="210" stroke="#ff8c42" stroke-width="5"></line>
+                <line id="revenue-line" x1="85" y1="535" x2="780" y2="120" stroke="#2b5fb2" stroke-width="5"></line>
+
+                <circle id="bep-dot" cx="450" cy="300" r="11" fill="#d62828" stroke="#fff" stroke-width="3"></circle>
+
+                <text x="710" y="110" font-size="18" fill="#2b5fb2">销售收入线</text>
+                <text x="710" y="225" font-size="18" fill="#ff8c42">总成本线</text>
+                <text x="710" y="395" font-size="18" fill="#666">固定成本线</text>
+
+                <text x="295" y="455" font-size="18" fill="#8b1e1e">亏损区间</text>
+                <text x="555" y="240" font-size="18" fill="#2d6a2d">盈利区间</text>
+
+                <line id="bep-arrow" x1="255" y1="190" x2="435" y2="292" stroke="#222" stroke-width="2.5" marker-end="url(#arrow-be)"></line>
+                <rect x="190" y="150" width="150" height="46" fill="#fff" stroke="#222" stroke-width="1.5"></rect>
+                <text x="205" y="179" font-size="19" fill="#222">盈亏平衡点</text>
+
+                <text id="bep-label" x="465" y="292" font-size="16" fill="#222">20000件</text>
+                <text id="forecast-label" x="695" y="145" font-size="16" fill="#222">当前销量 25000件</text>
+              </svg>
             </div>
           </div>
         </div>
@@ -3759,7 +4000,7 @@
           <button class="step-btn" onclick="showPDCASection('pdca-sec-3')">← 返回上一步</button>
           <button class="step-btn" onclick="backToMenu()">返回主菜单</button>
         </div>
-        <h3>第四步：反思与总结</h3>
+        <h3>第三步：反思与总结</h3>
         <div class="pdca-bottom-grid">
           <div class="factor-item">
             <h4>选择题1</h4>
@@ -4156,21 +4397,37 @@
       }
     }
 
-    function initBETicks() {
+    function getBENiceStep(maxValue) {
+      if (maxValue <= 40000) return 5000;
+      if (maxValue <= 80000) return 10000;
+      if (maxValue <= 160000) return 20000;
+      if (maxValue <= 400000) return 50000;
+      return 100000;
+    }
+
+    function getBENiceAxisMax(value, ratio) {
+      var safeValue = Math.max(value * ratio, 1);
+      var step = getBENiceStep(safeValue);
+      return Math.ceil(safeValue / step) * step;
+    }
+
+    function initBETicks(maxQty, maxMoney) {
+      maxQty = maxQty || 35000;
+      maxMoney = maxMoney || 320000;
       var xg = document.getElementById('x-ticks');
       var yg = document.getElementById('y-ticks');
       if (!xg || !yg) return;
       xg.innerHTML = '';
       yg.innerHTML = '';
       var left = 85, bottom = 535, width = 690, height = 450;
-      var maxQty = 35000;
-      var maxMoney = 320000;
-      for (var q = 0; q <= 35000; q += 5000) {
+      var qtyStep = getBENiceStep(maxQty);
+      var moneyStep = getBENiceStep(maxMoney);
+      for (var q = 0; q <= maxQty; q += qtyStep) {
         var xp = left + (q / maxQty) * width;
         xg.innerHTML += '<line x1="' + xp + '" y1="535" x2="' + xp + '" y2="543" stroke="#666" stroke-width="1"></line>';
         xg.innerHTML += '<text x="' + xp + '" y="560" font-size="12" text-anchor="middle" fill="#444">' + q + '</text>';
       }
-      for (var m = 0; m <= 300000; m += 50000) {
+      for (var m = 0; m <= maxMoney; m += moneyStep) {
         var yp = bottom - (m / maxMoney) * height;
         yg.innerHTML += '<line x1="77" y1="' + yp + '" x2="85" y2="' + yp + '" stroke="#666" stroke-width="1"></line>';
         yg.innerHTML += '<text x="71" y="' + (yp + 4) + '" font-size="12" text-anchor="end" fill="#444">' + m + '</text>';
@@ -4179,11 +4436,14 @@
 
     function drawBEGraph(state) {
       var left = 85, bottom = 535, width = 690, height = 450;
-      var maxQty = 35000;
-      var maxMoney = 320000;
       var qty = 25000;
       var contrib = Math.max(state.price - state.varcost, 0.1);
       var bep = state.fixed / contrib;
+      var qtyForAxis = Math.max(qty, bep);
+      var maxQty = getBENiceAxisMax(qtyForAxis, 1.18);
+      var maxMoney = getBENiceAxisMax(Math.max(state.price * maxQty, state.fixed + state.varcost * maxQty), 1.08);
+
+      initBETicks(maxQty, maxMoney);
 
       function x(q) { return left + Math.min(q / maxQty, 1) * width; }
       function y(m) { return bottom - Math.min(m / maxMoney, 1) * height; }
@@ -4202,7 +4462,7 @@
       var bepX = x(bep);
       var bepY = y(state.price * bep);
 
-      setLine('fixed-line', left, fixedY, 810, fixedY);
+      setLine('fixed-line', left, fixedY, x(maxQty), fixedY);
       setLine('cost-line', left, fixedY, x(maxQty), costEndY);
       setLine('revenue-line', left, bottom, x(maxQty), revEndY);
 
@@ -4214,8 +4474,10 @@
 
       var bepLabel = document.getElementById('bep-label');
       if (bepLabel) {
-        bepLabel.setAttribute('x', bepX + 12);
-        bepLabel.setAttribute('y', bepY - 10);
+        var labelX = Math.min(bepX + 12, x(maxQty) - 110);
+        var labelY = Math.max(bepY - 12, 88);
+        bepLabel.setAttribute('x', labelX);
+        bepLabel.setAttribute('y', labelY);
         bepLabel.textContent = Math.round(bep) + '件';
       }
 
@@ -4223,8 +4485,8 @@
       var fqy = y(qty * state.price);
       var forecast = document.getElementById('forecast-label');
       if (forecast) {
-        forecast.setAttribute('x', Math.min(fqx + 10, 700));
-        forecast.setAttribute('y', fqy - 10);
+        forecast.setAttribute('x', Math.min(fqx + 10, x(maxQty) - 140));
+        forecast.setAttribute('y', Math.max(fqy - 10, 78));
         forecast.textContent = '当前销量 ' + qty + '件';
       }
 
@@ -4235,7 +4497,7 @@
 
       var arrowStartX = Math.max(bepX - 165, 200);
       var arrowStartY = Math.max(bepY - 90, 150);
-      setLine('bep-arrow', arrowStartX, arrowStartY, bepX - 12, bepY - 10);
+      setLine('bep-arrow', arrowStartX, arrowStartY, Math.max(bepX - 12, left + 15), Math.max(bepY - 10, 65));
     }
 
     function updateBELive() {
@@ -5290,5 +5552,430 @@
     }
 
   </script>
+
+<script>
+  (function() {
+    const moduleConfigs = {
+      mod1: {
+        getPanels: (module) => Array.from(module.children).filter((el) => el.tagName === 'DETAILS')
+      },
+      mod2: {
+        getPanels: (module) => Array.from(module.children).filter((el) => el.classList && el.classList.contains('mini-card')).slice(0, 1),
+        titles: ['情景与目标']
+      },
+      mod3: {
+        getPanels: (module) => {
+          const intro = Array.from(module.children).find((el) => el.classList && el.classList.contains('mini-card') && !el.id);
+          return [intro].concat(['delphi-sec-1','delphi-sec-2','delphi-sec-3','delphi-sec-4'].map((id) => document.getElementById(id))).filter(Boolean);
+        },
+        titles: ['模块说明']
+      },
+      mod4: {
+        getPanels: (module) => {
+          const intro = Array.from(module.children).find((el) => el.classList && el.classList.contains('mini-card') && !el.id);
+          return [intro].concat(['eval-sec-1','eval-sec-2','eval-sec-4'].map((id) => document.getElementById(id))).filter(Boolean);
+        },
+        titles: ['模块说明']
+      },
+      mod5: {
+        getPanels: (module) => {
+          const items = Array.from(module.children).filter((el) => {
+            if (!el.classList) return false;
+            return el.classList.contains('mini-card') || el.classList.contains('be-live-layout');
+          });
+          return items;
+        },
+        titles: ['模块说明', '实时分析', '反思与总结']
+      },
+      mod6: {
+        getPanels: (module) => {
+          const intro = Array.from(module.children).find((el) => el.classList && el.classList.contains('mini-card'));
+          return [intro].concat(Array.from(module.children).filter((el) => el.tagName === 'DETAILS')).filter(Boolean);
+        },
+        titles: ['决策情景']
+      },
+      mod7: {
+        getPanels: (module) => Array.from(module.children).filter((el) => {
+          if (!el.classList) return false;
+          return el.classList.contains('mini-card') || el.classList.contains('step-card');
+        }),
+        titles: ['决策情景']
+      },
+      mod8: {
+        getPanels: (module) => {
+          const intro = Array.from(module.children).find((el) => el.classList && el.classList.contains('mini-card') && !el.id);
+          return [intro].concat(['pdca-sec-1','pdca-sec-2','pdca-sec-3','pdca-sec-4'].map((id) => document.getElementById(id))).filter(Boolean);
+        },
+        titles: ['模块说明']
+      }
+    };
+
+    function cleanTitle(text) {
+      return String(text || '').replace(/\s+/g, ' ').replace(/^[\s\u00A0]+|[\s\u00A0]+$/g, '');
+    }
+
+    function inferTitle(panel, fallback, index) {
+      if (fallback) return fallback;
+      if (!panel) return '步骤' + (index + 1);
+      if (panel.tagName === 'DETAILS') {
+        const summary = panel.querySelector('summary');
+        return cleanTitle(summary ? summary.textContent : '步骤' + (index + 1));
+      }
+      const heading = panel.querySelector('h3, h4');
+      if (heading) return cleanTitle(heading.textContent);
+      return '步骤' + (index + 1);
+    }
+
+    function setStepButtonState(moduleId, stepId) {
+      const module = document.getElementById(moduleId);
+      if (!module) return;
+      module.querySelectorAll('.module-step-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.stepTarget === stepId);
+      });
+    }
+
+    window.showModuleStep = function(moduleId, stepId) {
+      const module = document.getElementById(moduleId);
+      if (!module) return;
+      module.querySelectorAll('.module-step-panel').forEach((panel) => {
+        panel.classList.remove('active-module-step');
+      });
+      const target = document.getElementById(stepId) || module.querySelector('[data-generated-step="' + stepId + '"]');
+      if (target) {
+        target.classList.add('active-module-step');
+        if (target.tagName === 'DETAILS') target.open = true;
+        setStepButtonState(moduleId, stepId);
+      }
+    };
+
+    window.activateModuleStep = function(moduleId, stepId) {
+      if (moduleId === 'mod3' && /^delphi-sec-/.test(stepId)) return showDelphiSection(stepId);
+      if (moduleId === 'mod4' && /^eval-sec-/.test(stepId)) return showEvalSection(stepId);
+      if (moduleId === 'mod8' && /^pdca-sec-/.test(stepId)) return showPDCASection(stepId);
+      showModuleStep(moduleId, stepId);
+    };
+
+    function buildModuleSubnav(moduleId) {
+      const module = document.getElementById(moduleId);
+      const config = moduleConfigs[moduleId];
+      if (!module || !config) return;
+      const panels = config.getPanels(module).filter(Boolean);
+      if (!panels.length) return;
+      const stepNav = document.createElement('div');
+      stepNav.className = 'module-subnav';
+      const insertAfter = module.querySelector('.subtle') || module.querySelector('.section-title');
+      if (insertAfter && insertAfter.parentNode) {
+        insertAfter.insertAdjacentElement('afterend', stepNav);
+      } else {
+        module.insertBefore(stepNav, panels[0]);
+      }
+      panels.forEach((panel, index) => {
+        const generatedId = panel.id || (moduleId + '-step-' + (index + 1));
+        if (!panel.id) panel.setAttribute('data-generated-step', generatedId);
+        panel.classList.add('module-step-panel');
+        if (panel.tagName === 'DETAILS') panel.open = true;
+        const title = inferTitle(panel, config.titles && config.titles[index], index);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'module-step-btn';
+        btn.textContent = title;
+        btn.dataset.stepTarget = generatedId;
+        btn.addEventListener('click', function() {
+          activateModuleStep(moduleId, generatedId);
+        });
+        stepNav.appendChild(btn);
+      });
+
+      const active = panels.find((panel) => {
+        if (moduleId === 'mod3') return panel.classList.contains('active-delphi-section');
+        if (moduleId === 'mod4') return panel.classList.contains('active-eval-section');
+        if (moduleId === 'mod8') return panel.classList.contains('active-pdca-section');
+        return false;
+      }) || panels[0];
+      const activeId = active.id || active.getAttribute('data-generated-step');
+      showModuleStep(moduleId, activeId);
+    }
+
+    function createSidebar() {
+      const container = document.querySelector('.container');
+      const hero = container.querySelector('.hero');
+      const footer = container.querySelector('.footer-note');
+      const overview = document.getElementById('mainMenu');
+      const modules = Array.from(document.querySelectorAll('.module-panel'));
+      if (!container || !hero || !overview) return;
+
+      overview.classList.add('module-panel', 'full-module', 'overview-panel');
+      const shell = document.createElement('div');
+      shell.className = 'app-shell';
+      const sidebar = document.createElement('aside');
+      sidebar.className = 'sidebar';
+      const stage = document.createElement('main');
+      stage.className = 'display-stage';
+      sidebar.innerHTML = '<div class="sidebar-head">主模块导航</div><div id="sidebarNav" class="sidebar-nav"></div>';
+
+      container.insertBefore(shell, overview);
+      shell.appendChild(sidebar);
+      shell.appendChild(stage);
+      stage.appendChild(overview);
+      modules.forEach((module) => stage.appendChild(module));
+      if (footer) container.appendChild(footer);
+
+      const nav = sidebar.querySelector('#sidebarNav');
+      const buttons = Array.from(overview.querySelectorAll('.menu-grid .menu-btn'));
+      const overviewBtn = document.createElement('button');
+      overviewBtn.type = 'button';
+      overviewBtn.className = 'sidebar-btn';
+      overviewBtn.textContent = '平台导览';
+      overviewBtn.dataset.target = 'mainMenu';
+      overviewBtn.addEventListener('click', backToMenu);
+      nav.appendChild(overviewBtn);
+
+      buttons.forEach((btn) => {
+        const text = cleanTitle((btn.querySelector('.menu-text') || btn).innerText || btn.textContent);
+        const match = (btn.getAttribute('onclick') || '').match(/openModule\('([^']+)'\)/);
+        if (!match) return;
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'sidebar-btn';
+        item.dataset.target = match[1];
+        item.textContent = text.replace(/模块\s*/g, '模块 ').replace(/\s+/g, ' ');
+        item.addEventListener('click', function() {
+          openModule(match[1]);
+        });
+        nav.appendChild(item);
+      });
+
+      const subtle = overview.querySelector('.subtle');
+      const title = overview.querySelector('.section-title');
+      if (title) title.textContent = '平台导览';
+      if (subtle) subtle.textContent = '左侧点击主模块，右侧顶部点击步骤导航，所有内容都在同一主显示区切换。';
+      const note = document.createElement('div');
+      note.className = 'overview-note';
+      note.innerHTML = '<p><strong>界面说明：</strong>左侧是一级导航，右侧顶部是当前模块的二级步骤导航。</p><p><strong>使用方式：</strong>先在左侧选择主模块，再在右侧顶部切换步骤或子模块内容。</p>';
+      overview.insertBefore(note, overview.querySelector('.menu-grid'));
+      const grid = overview.querySelector('.menu-grid');
+      if (grid) grid.classList.add('legacy-main-grid');
+    }
+
+    function setSidebarState(targetId) {
+      document.querySelectorAll('.sidebar-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.target === targetId);
+      });
+    }
+
+    window.openModule = function(id) {
+      document.querySelectorAll('.module-panel').forEach((panel) => panel.classList.remove('active-panel'));
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('active-panel');
+        setSidebarState(id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.backToMenu = function() {
+      document.querySelectorAll('.module-panel').forEach((panel) => panel.classList.remove('active-panel'));
+      const overview = document.getElementById('mainMenu');
+      if (overview) overview.classList.add('active-panel');
+      setSidebarState('mainMenu');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.showDelphiSection = function(sectionId) {
+      document.querySelectorAll('#mod3 .delphi-section').forEach((sec) => sec.classList.remove('active-delphi-section'));
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add('active-delphi-section');
+        if (sectionId === 'delphi-sec-2') showDelphiStep('delphi-step-2');
+        if (sectionId === 'delphi-sec-3') showDelphiStep('delphi-step-4');
+        showModuleStep('mod3', sectionId);
+      }
+    };
+
+    window.backToDelphiMenu = function() {
+      showModuleStep('mod3', 'mod3-step-1');
+    };
+
+    window.showEvalSection = function(sectionId) {
+      if (sectionId === 'eval-sec-3') sectionId = 'eval-sec-2';
+      document.querySelectorAll('#mod4 .eval-section').forEach((sec) => sec.classList.remove('active-eval-section'));
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add('active-eval-section');
+        showModuleStep('mod4', sectionId);
+      }
+    };
+
+    window.backToEvalMenu = function() {
+      showModuleStep('mod4', 'mod4-step-1');
+    };
+
+    window.showPDCASection = function(sectionId) {
+      document.querySelectorAll('#mod8 .pdca-section').forEach((sec) => sec.classList.remove('active-pdca-section'));
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.classList.add('active-pdca-section');
+        showModuleStep('mod8', sectionId);
+      }
+    };
+
+    window.backToPDCAMenu = function() {
+      showModuleStep('mod8', 'mod8-step-1');
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      createSidebar();
+      ['mod1','mod2','mod3','mod4','mod5','mod6','mod7','mod8'].forEach(buildModuleSubnav);
+      backToMenu();
+    });
+  })();
+</script>
+
+<style>
+  .eval-lab-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(250px, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .eval-main-shell {
+    position: relative;
+    border: 1px solid #d9e3f0;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #fcfdff 0%, #f7faff 100%);
+    min-height: 640px;
+    overflow: hidden;
+  }
+
+  .eval-main-shell.is-fullscreen {
+    position: fixed;
+    inset: 16px;
+    z-index: 9998;
+    min-height: auto;
+    box-shadow: 0 24px 80px rgba(18, 38, 63, 0.28);
+  }
+
+  .eval-shell-toolbar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+  }
+
+  .eval-main-frame {
+    height: 100%;
+    max-height: 640px;
+    overflow: auto;
+    padding: 46px 12px 12px;
+  }
+
+  .eval-main-shell.is-fullscreen .eval-main-frame {
+    max-height: calc(100vh - 32px);
+  }
+
+  .eval-side-panel {
+    display: grid;
+    gap: 12px;
+  }
+
+  .eval-adjust-side,
+  .eval-target-tip {
+    margin-top: 0;
+  }
+
+  .eval-target-tip {
+    padding: 10px 12px;
+  }
+
+  .eval-compact,
+  .eval-compact p,
+  .eval-compact li,
+  .eval-compact .bar-note,
+  .eval-compact .pick-tip {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .eval-compact h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .eval-compact-card,
+  .eval-compact .task-box,
+  .eval-compact .adjust-card,
+  .eval-compact .mini-card {
+    padding: 12px;
+  }
+
+  .eval-compact .score-table {
+    font-size: 12px;
+  }
+
+  .eval-compact .score-table th,
+  .eval-compact .score-table td {
+    padding: 6px 7px;
+    line-height: 1.2;
+  }
+
+  .eval-compact .table-wrap {
+    overflow-x: auto;
+  }
+
+  .eval-compact .action-row {
+    margin-top: 10px;
+  }
+
+  .eval-compact input[type="range"] {
+    width: 100%;
+    margin: 4px 0 8px;
+  }
+
+  .compact-task-box ul {
+    margin: 6px 0 6px 18px;
+  }
+
+  @media (max-width: 1100px) {
+    .eval-lab-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<script>
+  function toggleEvalFullscreen() {
+    var shell = document.getElementById('eval-main-shell');
+    var btn = document.getElementById('eval-fullscreen-btn');
+    if (!shell || !btn) return;
+    shell.classList.toggle('is-fullscreen');
+    btn.innerText = shell.classList.contains('is-fullscreen') ? '缩小' : '全屏';
+  }
+</script>
+
+
+<script>
+  window.showEvalResult = function() {
+    var cost = Number(document.getElementById('cost-slider').value);
+    var process = Number(document.getElementById('process-slider').value);
+    var stable = Number(document.getElementById('stable-slider').value);
+    var feedback = document.getElementById('eval-adjust-feedback');
+    var box = document.getElementById('eval-result-box');
+    var frame = document.getElementById('eval-main-frame');
+    if (!feedback || !box) return;
+    feedback.style.display = 'block';
+    if (cost === 30 && process === 8 && stable === 2) {
+      feedback.innerHTML = '很好。你已经按要求完成了权重调整。现在请观察新的方案得分和排序变化。';
+      box.style.display = 'block';
+      if (frame) {
+        setTimeout(function() {
+          frame.scrollTo({ top: box.offsetTop - 36, behavior: 'smooth' });
+        }, 60);
+      }
+    } else {
+      box.style.display = 'none';
+      feedback.innerHTML = '你已经开始调整权重了。请再检查一下三个数据条是否都调到了任务要求的目标值，然后再查看新结果。';
+    }
+  };
+</script>
 </body>
 </html>
